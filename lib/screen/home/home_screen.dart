@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:t2305m_flutter/screen/home/ui/banner_slider.dart';
 import 'package:t2305m_flutter/screen/home/ui/search_box.dart';
 
 class HomeScreen extends StatelessWidget{
@@ -11,7 +12,8 @@ class HomeScreen extends StatelessWidget{
       scrollDirection: Axis.vertical,
       child: Column(
         children: [
-            SearchBox()
+            SearchBox(),
+            BannerSlider()
         ],
       ),
     );

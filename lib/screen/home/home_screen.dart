@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:t2305m_flutter/screen/home/ui/banner_slider.dart';
+import 'package:t2305m_flutter/screen/home/ui/category_list.dart';
 import 'package:t2305m_flutter/screen/home/ui/search_box.dart';
 
 class HomeScreen extends StatelessWidget{
@@ -13,7 +14,8 @@ class HomeScreen extends StatelessWidget{
       child: Column(
         children: [
             SearchBox(),
-            BannerSlider()
+            BannerSlider(),
+            CategoryList()
         ],
       ),
     );

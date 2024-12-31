@@ -1,10 +1,28 @@
 import 'package:flutter/material.dart';
+import 'package:t2305m_flutter/screen/home/ui/category_item.dart';
+import 'package:t2305m_flutter/service/category_service.dart';
+import '../../../model/category.dart';
 
 class CategoryList extends StatefulWidget{
   const CategoryList({super.key});
   _CategoryListState createState() => _CategoryListState();
 }
 class _CategoryListState extends State<CategoryList>{
+  final CategoryService _categoryService = CategoryService();
+  List<Category> categories = [];
+
+  Future<void> _getData() async{
+    List<Category> data = await _categoryService.getCategories();
+    setState(() {
+      categories = data;
+    });
+  }
+  @override
+  void initState() {
+    super.initState();
+    _getData();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -24,11 +42,11 @@ class _CategoryListState extends State<CategoryList>{
           height: 200,
           child: ListView.builder(
             scrollDirection: Axis.horizontal,
-            itemCount: 5,
+            itemCount: categories.length,
             itemBuilder: (context,index){
-              return const Padding(
-                  padding: EdgeInsets.all(20.0),
-                  child: Text("Category Name"),
+              return Padding(
+                  padding: EdgeInsets.all(10.0),
+                  child: CategoryItem(category: categories[index]),
               );
             },
           ),

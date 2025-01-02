@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:t2305m_flutter/model/feature_product.dart';
+import 'package:t2305m_flutter/service/product_service.dart';
 
 class FeatureProducts extends StatefulWidget{
   const FeatureProducts({super.key});
@@ -7,6 +9,21 @@ class FeatureProducts extends StatefulWidget{
   _FeatureProductsState createState()=> _FeatureProductsState();
 }
 class _FeatureProductsState extends State<FeatureProducts>{
+  final ProductService _productService = ProductService();
+  List<Product> products = [];
+  Future<void> getProducts() async{
+     FeatureProduct? featureProduct = await _productService.getProducts(12);
+     if(featureProduct!=null){
+       setState(() {
+         products = featureProduct.products;
+       });
+     }
+  }
+
+  @override
+  void initState() {
+    getProducts();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -27,11 +44,11 @@ class _FeatureProductsState extends State<FeatureProducts>{
           height: 260,
           child: ListView.builder(
             scrollDirection: Axis.horizontal,
-            itemCount: 5,
+            itemCount: products.length,
             itemBuilder: (context,index){
               return Padding(
                   padding: const EdgeInsets.all(20.0),
-                  child: Text("Product Name"),
+                  child: Text(products[index].title??""),
               );
             }
           ),

@@ -10,8 +10,8 @@ class _FeatureProductsState extends State<FeatureProducts>{
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      alignment: AlignmentDirectional.topStart,
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const Padding(
           padding: EdgeInsets.only(left: 10,top: 20,right: 10,bottom: 20),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:t2305m_flutter/model/feature_product.dart';
+import 'package:t2305m_flutter/screen/home/ui/product_item.dart';
 import 'package:t2305m_flutter/service/product_service.dart';
 
 class FeatureProducts extends StatefulWidget{
@@ -41,14 +42,14 @@ class _FeatureProductsState extends State<FeatureProducts>{
           ),
         ),
         Container(
-          height: 260,
+          height: 300,
           child: ListView.builder(
             scrollDirection: Axis.horizontal,
             itemCount: products.length,
             itemBuilder: (context,index){
               return Padding(
                   padding: const EdgeInsets.all(20.0),
-                  child: Text(products[index].title??""),
+                  child: ProductItem(product: products[index]),
               );
             }
           ),

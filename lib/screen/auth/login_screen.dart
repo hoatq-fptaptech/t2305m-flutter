@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:t2305m_flutter/root_page.dart';
 
 class LoginScreen extends StatefulWidget{
@@ -22,6 +23,22 @@ class _StateLogin extends State<LoginScreen>{
     Navigator.pushReplacement(context,
       MaterialPageRoute(builder: (context)=> const RootPage())
     );
+  }
+  @override
+  void initState() {
+    super.initState();
+    initialization();
+  }
+
+  void initialization() async {
+    print('ready in 3...');
+    await Future.delayed(const Duration(seconds: 1));
+    print('ready in 2...');
+    await Future.delayed(const Duration(seconds: 1));
+    print('ready in 1...');
+    await Future.delayed(const Duration(seconds: 1));
+    print('go!');
+    FlutterNativeSplash.remove();
   }
   @override
   Widget build(BuildContext context) {

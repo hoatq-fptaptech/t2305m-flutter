@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:t2305m_flutter/root_page.dart';
 import 'package:t2305m_flutter/screen/auth/login_screen.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 
 void main() {
+  WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+  FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   runApp(const MyApp());
 }
 

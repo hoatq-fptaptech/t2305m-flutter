@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:t2305m_flutter/root_page.dart';
 
 class LoginScreen extends StatefulWidget{
   const LoginScreen({super.key});
@@ -8,6 +9,20 @@ class LoginScreen extends StatefulWidget{
 class _StateLogin extends State<LoginScreen>{
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
+  bool _hidePassword = true;
+  login() async {
+    // get email
+    print(emailController.text);
+    // get password
+    print(passwordController.text);
+    // call login api
+    // get auth bearer token
+    // success -> save token to client storage ...
+    // redirect -> Root page
+    Navigator.pushReplacement(context,
+      MaterialPageRoute(builder: (context)=> const RootPage())
+    );
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,13 +39,18 @@ class _StateLogin extends State<LoginScreen>{
             ),
             TextField(
               controller: passwordController,
+              obscureText: _hidePassword,
               decoration: InputDecoration(
                 border: UnderlineInputBorder(),
                 labelText: "Password",
                 suffixIcon: IconButton(
-                  icon: Icon(Icons.visibility),
+                  icon: Icon(
+                    _hidePassword?Icons.visibility_outlined:Icons.visibility_off_outlined
+                  ),
                   onPressed: (){
-
+                     setState(() {
+                       _hidePassword = !_hidePassword;
+                     });
                   },
                 )
               ),
@@ -38,7 +58,7 @@ class _StateLogin extends State<LoginScreen>{
             Padding(
               padding: EdgeInsets.all(20.0),
               child: FloatingActionButton(
-                onPressed: (){},
+                onPressed: login,
                 child: Text("Login"),
               ),
             )

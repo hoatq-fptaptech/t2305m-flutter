@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:t2305m_flutter/bloc/bloc.dart';
+import 'package:t2305m_flutter/model/cart_item.dart';
 import 'package:t2305m_flutter/model/feature_product.dart';
 
 class ProductItem extends StatelessWidget{
@@ -23,7 +26,17 @@ class ProductItem extends StatelessWidget{
             Text(product.title??""),
             Text(product.price.toString()??""),
             FloatingActionButton(
-                onPressed: (){},
+                onPressed: (){
+                    CartItem newItem = CartItem(
+                        id: product.id??0,
+                        title: product.title??"",
+                        thumbnail: product.thumbnail??"",
+                        price: product.price??0,
+                        buyQty: 1
+                    );
+                    final bloc = Provider.of<Bloc>(context,listen: false);
+                    bloc.addToCart(newItem);
+                },
                 child: Icon(Icons.add_shopping_cart_rounded),
             )
           ],
